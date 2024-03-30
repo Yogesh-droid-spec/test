@@ -10,7 +10,7 @@ function App() {
     const clientId = '6869033625238.6888747023204';
     const scope = 'chat:write,users:read';
 
-    const slackAuthUrl = `https://slack.com/oauth/v2/authorize?client_id=6869033625238.6888747023204&scope=chat:write,incoming-webhook,channels:read&user_scope=chat:write`;
+  const slackAuthUrl = `https://slack.com/oauth/v2/authorize?client_id=6869033625238.6888747023204&scope=chat:write,incoming-webhook,channels:read&user_scope=chat:write`;
 
     // Open the Slack authentication URL in a new window
     const authWindow = window.open(slackAuthUrl, '_blank', 'width=800,height=600');

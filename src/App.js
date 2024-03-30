@@ -93,7 +93,7 @@ function App() {
       </label>
       <button onClick={sendMessage}>Send Message</button>
       <div>{responseMessage}</div>
-      <a href="https://slack.com/oauth/v2/authorize?client_id=6869033625238.6888747023204&scope=chat:write&user_scope=users:read" onClick={handleSlackAuthCompletion}>
+      <a href="https://slack.com/oauth/v2/authorize?client_id=6869033625238.6888747023204&scope=channels%3Aread%2Cchat%3Awrite%2Cchat%" onClick={handleSlackAuthCompletion}>
         <button>Add Slack</button>
       </a>
     </div>

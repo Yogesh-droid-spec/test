@@ -19,9 +19,8 @@ function App() {
     const authWindow = window.open(slackAuthUrl, '_blank', 'width=800,height=600');
 
     // Listen for the authentication completion event
-    const handleAuthCompletion = (event) => {
-      // Check if the event is from the expected Redirect URI
-      if (event.origin === redirectUri) {
+      const handleAuthCompletion = (event) => {
+     
         // Handle the authentication response from Slack
         const data = event.data;
         console.log("Event data",event.data);
@@ -32,9 +31,8 @@ function App() {
         } else if (data && data.type === 'slack-auth-error') {
           // Authentication failed, handle the error
           console.error('Slack authentication error:', data.payload);
-          setIsAuthenticating(false);
         }
-      }
+     
     };
 
     // Listen for the authentication completion message

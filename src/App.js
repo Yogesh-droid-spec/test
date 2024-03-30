@@ -24,7 +24,7 @@ function App() {
       if (event.origin === redirectUri) {
         // Handle the authentication response from Slack
         const data = event.data;
-
+        console.log("Event data",event.data);
         if (data && data.type === 'slack-auth-success') {
           // Authentication successful, handle the response data
           const { code } = data.payload;

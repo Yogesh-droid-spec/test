@@ -8,16 +8,20 @@ function App() {
 
     // Replace these values with your actual Slack app credentials
     const clientId = '6869033625238.6888747023204';
-    const scope = 'chat:write,users:read';
+    const scope = 'chat:write,incoming-webhook,channels:read';
 
-  const slackAuthUrl = `https://slack.com/oauth/v2/authorize?client_id=6869033625238.6888747023204&scope=chat:write,incoming-webhook,channels:read&user_scope=chat:write`;
+    // Update the Redirect URI with the one you configured in your Slack app
+    const redirectUri = 'https://test-alpha-inky-27.vercel.app/';
+
+    const slackAuthUrl = `https://slack.com/oauth/v2/authorize?client_id=${clientId}&scope=${scope}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 
     // Open the Slack authentication URL in a new window
     const authWindow = window.open(slackAuthUrl, '_blank', 'width=800,height=600');
 
     // Listen for the authentication completion event
     const handleAuthCompletion = (event) => {
-      if (event.origin === window.location.origin) {
+      // Check if the event is from the expected Redirect URI
+      if (event.origin === redirectUri) {
         // Handle the authentication response from Slack
         const data = event.data;
 
@@ -28,6 +32,7 @@ function App() {
         } else if (data && data.type === 'slack-auth-error') {
           // Authentication failed, handle the error
           console.error('Slack authentication error:', data.payload);
+          setIsAuthenticating(false);
         }
       }
     };
@@ -44,8 +49,7 @@ function App() {
 
   const exchangeCodeForToken = async (code) => {
     try {
-      // Replace these values with your actual Slack app credentials
-      const clientId = '6869033625238.6888747023204';
+      // Replace this value with your actual Slack app client secret
       const clientSecret = '5fb7a7581363c2484f1dd5d702175697';
 
       const response = await fetch('https://slack.com/api/oauth.v2.access', {
@@ -54,7 +58,7 @@ function App() {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
-          client_id: clientId,
+          client_id: '6869033625238.6888747023204',
           client_secret: clientSecret,
           code,
         }),

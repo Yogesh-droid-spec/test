@@ -7,7 +7,7 @@ function App() {
     setIsAuthenticating(true);
 
     // Replace these values with your actual Slack app credentials
-    const clientId = 'YOUR_SLACK_CLIENT_ID';
+    const clientId = '6869033625238.6888747023204';
     const scope = 'chat:write,users:read';
 
     const slackAuthUrl = `https://slack.com/oauth/v2/authorize?client_id=${clientId}&scope=${scope}&user_scope=${scope}`;
